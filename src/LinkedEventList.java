@@ -12,25 +12,16 @@ public class LinkedEventList implements FutureEventList{
 
     @Override
     public Event removeFirst() {
-        Node removeFirst = this.head;
-
-        if (size == 1) {
-            this.head = null;
-            simtime = removeFirst.getE().getArrivalTime();    // updating the simulation time to event arrival time
-            size = 0;
-            return removeFirst.getE();
-        }
-
-        else if (size > 1){
+            if (size <= 0 || this.head == null) {
+                return null;
+            }
+        
+            Node removeFirst = this.head;
             this.head = removeFirst.getNext();
-            simtime = removeFirst.getE().getArrivalTime();   // updating the simulation time to event arrival time
+            simtime = removeFirst.getE().getArrivalTime();
             size--;
-            return removeFirst.getE();
-        }
-
-        else{
-            return null;
-        }
+        
+            return removeFirst.getE(); 
     }
 
     @Override
